@@ -17,7 +17,7 @@ namespace DropboxSorter
             var UserFolder=Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
 
             string mainFolder = Path.Combine(UserFolder, @"Dropbox\Camera Uploads");
-            const string mask = @"\d{4}-\d{2}-\d{2} \d{2}\.\d{2}\.\d{2}.jpg";
+            const string mask = @"\d{4}-\d{2}-\d{2} \d{2}\.\d{2}\.\d{2}(-\d)?.jpg";
             var re=new Regex(mask);
             var directory = new DirectoryInfo(mainFolder);
             var files = directory.GetFiles();
