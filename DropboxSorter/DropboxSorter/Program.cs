@@ -26,13 +26,13 @@ namespace DropboxSorter
 
             foreach (var filteredfile in filteredfiles)
             {
-                var date = filteredfile.Name.Substring(0, 10);
-                const string dateFormat = "yyyy-MM-dd";
-                var dt =DateTime.ParseExact(date, dateFormat, CultureInfo.CurrentCulture);
-              var subdir=  directory.CreateSubdirectory(dt.ToString(dateFormat));
-                var newfn = filteredfile.Name.Substring(11);
-                var fullfn = Path.Combine(subdir.FullName, newfn);
-                filteredfile.MoveTo(fullfn);
+				var date = filteredfile.Name.Substring(0, 10);
+				const string dateFormat = "yyyy-MM-dd";
+				var dt =DateTime.ParseExact(date, dateFormat, CultureInfo.CurrentCulture);
+				var subdir=  directory.CreateSubdirectory(dt.ToString(dateFormat));
+				var newfn = filteredfile.Name.Substring(11);
+				var fullfn = Path.Combine(subdir.FullName, newfn);
+				filteredfile.MoveTo(fullfn);
             }
         }
     }
