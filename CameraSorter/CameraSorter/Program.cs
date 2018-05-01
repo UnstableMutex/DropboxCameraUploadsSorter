@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -49,6 +50,10 @@ namespace CameraSorter
                     var dayDirectory = monthFolder.CreateSubdirectory(file.CreationTime.Day.ToString());
                     var extFolder = dayDirectory.CreateSubdirectory(ext.ToUpper());
                     var newfn = Path.Combine(extFolder.FullName, file.Name);
+                    if (File.Exists(newfn))
+                    {
+                        File.Delete(newfn);
+                    }
                     file.MoveTo(newfn);
                 }
             }
