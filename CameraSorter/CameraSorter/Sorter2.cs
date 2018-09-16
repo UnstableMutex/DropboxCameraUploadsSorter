@@ -24,7 +24,7 @@ namespace CameraSorter
             }
 
         }
-        static string[] extentions = new[] { "jpg", "mp4" };
+        static string[] extentions = new[] { "jpg", "mp4", "cr2" };
         private void MoveImages(DateTime date)
         {
             var dateFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures), date.ToString("yyy-MM-dd"));
@@ -68,7 +68,10 @@ namespace CameraSorter
             var extDir = dayDir.CreateSubdirectory(ext);
 
             var outFileName = Path.Combine(extDir.FullName, file.Name.Substring(10).Trim());
-            file.MoveTo(outFileName);
+            if (!File.Exists(outFileName))
+            {
+                file.MoveTo(outFileName);
+            }
 
 
         }
