@@ -57,7 +57,7 @@ namespace CameraSorter
             var ext = Path.GetExtension(file.Name).Replace(".", string.Empty).ToUpper();
             //2018-05-31 014.JPG
             var dt = file.Directory.Name;//fn.Substring(0, 10);
-            var date =  DateTime.ParseExact(dt, "yyyy-MM-dd", CultureInfo.CurrentCulture);
+            var date = DateTime.ParseExact(dt, "yyyy-MM-dd", CultureInfo.CurrentCulture);
             var monthFolderPath = Path.Combine(@"C:\Allphotos", date.ToString("yyyy -MM"));
             DirectoryInfo di = new DirectoryInfo(monthFolderPath);
             if (!di.Exists)
@@ -71,6 +71,13 @@ namespace CameraSorter
             if (!File.Exists(outFileName))
             {
                 file.MoveTo(outFileName);
+            }
+            else
+            {
+                var fn1 = Path.GetFileNameWithoutExtension(file.Name) + "_" + DateTime.Now.Millisecond.ToString() + "." + Path.GetExtension(file.Name);
+                outFileName = Path.Combine(extDir.FullName, fn1);
+                file.MoveTo(outFileName);
+
             }
 
 
